@@ -13,7 +13,7 @@
 			<img src="../../img/gdsy.png" height="40px"/>
 				
 			
-			<u-waterfall v-model="flowList" ref="uWaterfall">
+			<u-waterfall v-model="flowList1" ref="uWaterfall">
 				<template v-slot:left="{leftList}">
 					<view class="demo-warter" v-for="(item, index) in shenyiList" :key="index">
 						<u-lazy-load threshold="-450" border-radius="10" :image="item.image" :index="index" @click="ToShenyi()"></u-lazy-load>
@@ -34,7 +34,7 @@
 		</div>
 		<div class="box">
 			<img src="../../img/yczs.png" height="40px"/>
-			<u-waterfall v-model="flowList" ref="uWaterfall">
+			<u-waterfall v-model="flowList2" ref="uWaterfall">
 				<template v-slot:left="{leftList}">
 					<view class="demo-warter" v-for="(item, index) in yaocaiList" :key="index">
 						<u-lazy-load threshold="-450" border-radius="10" :image="item.image" :index="index" @click="ToYaocai()"></u-lazy-load>
@@ -55,7 +55,7 @@
 		</div>
 		<div class="box">
 			<img src="../../img/ysmf.png" height="40px"/>
-			<u-waterfall v-model="flowList" ref="uWaterfall">
+			<u-waterfall v-model="flowList3" ref="uWaterfall">
 				<template v-slot:left="{leftList}">
 					<view class="demo-warter" v-for="(item, index) in yangshengList" :key="index">
 						<u-lazy-load threshold="-450" border-radius="10" :image="item.image" :index="index" @click="ToYangsheng()"></u-lazy-load>
@@ -79,84 +79,22 @@
 </template>
 
 <script>
+	const axios = require('axios');
 	export default{
 		data() {
 			return {
 				input:'',					
-				flowList:[],
-				options:[
-					{
-						label:'个人中心',
-						value:1,
-					},
-					{
-						label:'密码修改',
-						value:2,
-					},
-					{
-						label:'退出登录',
-						value:3,
-					}
-				],
+				flowList1:[],
+				flowList2:[],
+				flowList3:[],
 				list:[						
-                    'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fit.ping-jia.net%2Fpics%2Fhttp%3A%2F%2Fpic.qbaobei.com%2FUploads%2FPicture%2F2016-11-23%2F5834e9c01a2cb.jpg.jpg&refer=http%3A%2F%2Fit.ping-jia.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626533126&t=fd518d983061ccc95f6ac937c5047179',
+                    'http://n.sinaimg.cn/sinakd202047s/64/w492h372/20200407/87fe-iryninw2672238.jpg',
 					'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi.zyccst.com%2Fupload%2Fupay%2F877179%2F2%2FE58FAA322E6A7067.jpg&refer=http%3A%2F%2Fi.zyccst.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626593776&t=5fce91044fd2fb0a7eb26eb803083a54',
 					'https://img1.baidu.com/it/u=3436078025,1338630003&fm=26&fmt=auto&gp=0.jpg'  
 				],
-				shenyiList:[
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fit.ping-jia.net%2Fpics%2Fhttp%3A%2F%2Fpic.qbaobei.com%2FUploads%2FPicture%2F2016-11-23%2F5834e9c01a2cb.jpg.jpg&refer=http%3A%2F%2Fit.ping-jia.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626533126&t=fd518d983061ccc95f6ac937c5047179',
-						title:'华佗'
-					},
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fit.ping-jia.net%2Fpics%2Fhttp%3A%2F%2Fpic.qbaobei.com%2FUploads%2FPicture%2F2016-11-23%2F5834e9c01a2cb.jpg.jpg&refer=http%3A%2F%2Fit.ping-jia.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626533126&t=fd518d983061ccc95f6ac937c5047179',
-						title:'华佗'
-					},
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fit.ping-jia.net%2Fpics%2Fhttp%3A%2F%2Fpic.qbaobei.com%2FUploads%2FPicture%2F2016-11-23%2F5834e9c01a2cb.jpg.jpg&refer=http%3A%2F%2Fit.ping-jia.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626533126&t=fd518d983061ccc95f6ac937c5047179',
-						title:'华佗'
-					},
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fit.ping-jia.net%2Fpics%2Fhttp%3A%2F%2Fpic.qbaobei.com%2FUploads%2FPicture%2F2016-11-23%2F5834e9c01a2cb.jpg.jpg&refer=http%3A%2F%2Fit.ping-jia.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626533126&t=fd518d983061ccc95f6ac937c5047179',
-						title:'华佗'
-					}
-				],
-				yaocaiList:[
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi.zyccst.com%2Fupload%2Fupay%2F877179%2F2%2FE58FAA322E6A7067.jpg&refer=http%3A%2F%2Fi.zyccst.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626593776&t=5fce91044fd2fb0a7eb26eb803083a54',
-						title:'白芷'
-					},
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi.zyccst.com%2Fupload%2Fupay%2F877179%2F2%2FE58FAA322E6A7067.jpg&refer=http%3A%2F%2Fi.zyccst.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626593776&t=5fce91044fd2fb0a7eb26eb803083a54',
-						title:'白芷'
-					},
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi.zyccst.com%2Fupload%2Fupay%2F877179%2F2%2FE58FAA322E6A7067.jpg&refer=http%3A%2F%2Fi.zyccst.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626593776&t=5fce91044fd2fb0a7eb26eb803083a54',
-						title:'白芷'
-					},
-					{
-						image:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fi.zyccst.com%2Fupload%2Fupay%2F877179%2F2%2FE58FAA322E6A7067.jpg&refer=http%3A%2F%2Fi.zyccst.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1626593776&t=5fce91044fd2fb0a7eb26eb803083a54',
-						title:'白芷'
-					}
-				],
-				yangshengList:[
-					{
-						image:'https://img1.baidu.com/it/u=3436078025,1338630003&fm=26&fmt=auto&gp=0.jpg',
-						title:'养生小知识'
-					},
-					{
-						image:'https://img1.baidu.com/it/u=3436078025,1338630003&fm=26&fmt=auto&gp=0.jpg',
-						title:'养生小知识'
-					},
-					{
-						image:'https://img1.baidu.com/it/u=3436078025,1338630003&fm=26&fmt=auto&gp=0.jpg',
-						title:'养生小知识'
-					},
-					{
-						image:'https://img1.baidu.com/it/u=3436078025,1338630003&fm=26&fmt=auto&gp=0.jpg',
-						title:'养生小知识'
-					}
-				],
+				shenyiList:[],
+				yaocaiList:[],
+				yangshengList:[],
 			}
 		},
 		methods:{
@@ -175,20 +113,25 @@
 				    url: '/pages/index/yangsheng',
 				});
 			},
-			addRandomData(){
-				for(let i = 0; i < 10; i++) {
-					let index = this.$u.random(0, this.shenyiList.length - 1);
-					// 先转成字符串再转成对象，避免数组对象引用导致数据混乱
-					let item = JSON.parse(JSON.stringify(this.shenyiList[index]))
-					item.id = this.$u.guid();
-					this.flowList.push(item);
-				}
-			},
+			loadData(){
+				axios.get('http://localhost:3000/shenyi').then((response) => {
+				    this.shenyiList=response.data;
+					console.log(response)
+				    })
+				axios.get('http://localhost:3000/yaocai').then((response) => {
+				    this.yaocaiList=response.data;
+					console.log(response)
+				    })
+				axios.get('http://localhost:3000/yangsheng').then((response) => {
+				    this.yangshengList=response.data;
+					console.log(response)
+				    })
+			}
 			
 			
 		},
-		onLoad() {
-			this.addRandomData();		
+		mounted() {
+			this.loadData();
 		}
 		
 			
