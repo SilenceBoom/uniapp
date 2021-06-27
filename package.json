@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "uview-ui": "^1.8.4"
+  },
+  "devDependencies": {
+    "node-sass": "^6.0.0",
+    "sass-loader": "^12.1.0"
+  }
+}
