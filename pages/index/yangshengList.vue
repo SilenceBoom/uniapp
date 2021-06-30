@@ -1,6 +1,9 @@
 <template>
-	<view>
-		<img src="../../static/ysmf.png" height="50px"></img>
+	<view class="box">
+		<div style="width: 100%;background-color: #fff;">
+			<img src="../../static/ysmf.png" height="50px"></img>
+		</div>
+		
 		<view class="listcard" v-for="i in 10" :key="i" @click="ToYangsheng()">		    
 			<view class="listcard-image"><image src="../../static/yangsheng.jpg" mode="aspectFill"></image></view>
 			<view class="listcard-content">
@@ -66,5 +69,7 @@
 	}
 	.listcard-content_title{
 	}
-	
+	.box{
+		background-color: #e9e9e9;
+	}
 </style>

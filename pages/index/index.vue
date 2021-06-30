@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<view>
-		<div class="title">
+		<div class="title" style="width: 100%;background-color: #fff;">
 			<img style="display: inline;"  src="../../img/title.png" height="50px"/>		
 		</div>
 		<br>
@@ -10,7 +10,10 @@
 		</view>
 		
 		<div class="box">
-			<img src="../../img/gdsy.png" height="40px"/>
+			<div style="width: 100%;background-color: #fff;">
+				<img src="../../img/gdsy.png" height="40px"/>
+			</div>
+			
 				
 			
 			<u-waterfall v-model="flowList1" ref="uWaterfall">
@@ -33,7 +36,10 @@
 			</u-waterfall>
 		</div>
 		<div class="box">
-			<img src="../../img/yczs.png" height="40px"/>
+			<div style="width: 100%;background-color: #fff;">
+				<img src="../../img/yczs.png" height="40px"/>
+			</div>
+			
 			<u-waterfall v-model="flowList2" ref="uWaterfall">
 				<template v-slot:left="{leftList}">
 					<view class="demo-warter" v-for="(item, index) in yaocaiList" :key="index">
@@ -54,7 +60,10 @@
 			</u-waterfall>
 		</div>
 		<div class="box">
-			<img src="../../img/ysmf.png" height="40px"/>
+			<div style="width: 100%;background-color: #fff;">
+				<img src="../../img/ysmf.png" height="40px"/>
+			</div>
+			
 			<u-waterfall v-model="flowList3" ref="uWaterfall">
 				<template v-slot:left="{leftList}">
 					<view class="demo-warter" v-for="(item, index) in yangshengList" :key="index">
@@ -114,15 +123,15 @@
 				});
 			},
 			loadData(){
-				axios.get('http://localhost:3000/shenyi').then((response) => {
+				axios.get('http://192.168.43.74:3000/api/user/shenyi').then((response) => {
 				    this.shenyiList=response.data;
 					console.log(response)
 				    })
-				axios.get('http://localhost:3000/yaocai').then((response) => {
+				axios.get('http://192.168.43.74:3000/api/user/yaocai').then((response) => {
 				    this.yaocaiList=response.data;
 					console.log(response)
 				    })
-				axios.get('http://localhost:3000/yangsheng').then((response) => {
+				axios.get('http://192.168.43.74:3000/api/user/yangsheng').then((response) => {
 				    this.yangshengList=response.data;
 					console.log(response)
 				    })
@@ -160,11 +169,11 @@
 		position: relative;
 	}
 	.box{
-		padding-top: 10px;
+		padding: 5px;
 	}
 	.demo-warter {
 		border-radius: 8px;
-		margin: 5px;
+		margin: 10px;
 		background-color: #ffffff;
 		padding: 8px;
 		position: relative;
@@ -185,7 +194,7 @@
 		color: $u-main-color;
 	}
 	#app{
-		padding: 10px;
+		background-color: #e9e9e9;
 	}
 
 </style>

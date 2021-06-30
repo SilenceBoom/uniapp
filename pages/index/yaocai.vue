@@ -1,6 +1,9 @@
 <template>
-	<div>
-		<img src="../../img/bz.png" height="50px"/>
+	<div class="box">
+		<div style="width: 100%;background-color: #fff;">
+			<img src="../../img/bz.png" height="50px"/>
+		</div>
+		
 		<myword :imgUrl="imgUrl" :intro="intro" :word="word"></myword>
 		<u-button @click="Back()" size="medium" plain type="info" style="float: right;margin: 30px;">返回</u-button>
 	</div>
@@ -34,5 +37,9 @@
 		letter-spacing:1px;  
 		margin: 20px;
 		font-size: 15px;
+	}
+	.box{
+		background-color: #e9e9e9;
+		padding: 5px;
 	}
 </style>
